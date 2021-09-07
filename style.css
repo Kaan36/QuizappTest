@@ -1,0 +1,24 @@
+:root {
+    --pictureWidth: 800px;
+    --pictureMarginTop: 16px;
+}
+
+.mainImage {
+    width: var(--pictureWidth) !important;
+}
+
+.card-image {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--pictureMarginTop);
+}
+
+.answer-box-left {
+    display: flex;
+    width: 50%;
+}
+
+.answer-box-right {
+    
+    width: 50%;
+}
