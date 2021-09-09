@@ -122,8 +122,9 @@ let questions = [
 ]
 
 let currentQuestion = 0;
-
-
+let intervalID;
+let count = 10;
+let selectionValue;
 
 function showQuestion() {
     let question = questions[currentQuestion];
@@ -133,49 +134,35 @@ function showQuestion() {
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
-
-    var thirtyMinutes = 10,
-        display = document.querySelector('#time');
-    startTimer(thirtyMinutes, display);
+    count = 10;
+    startTimer();
 }
 
-function startTimer(duration, display) {
+function startTimer() {
     console.log('timerStart');
-    setTimeout(function () {
-
         document.getElementById('timer').classList.remove('d-none');
-
-        let timer = duration, minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            display.textContent = seconds;
-
-            if (--timer < 0) {
-                timer = 0;
+        intervalID = setInterval(function () {
+            count -= 1;
+            if (count <= 0) {
+                count = 0;
                 getResult();
+                console.log('Result active')
+                clearInterval(intervalID);
             }
+            document.getElementById('time').innerText = count;
         }, 1000);
-    }, 500);
+    
 
 }
 
 function setAnswer(selection) {
+    selectionValue = selection;
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selection.slice(-1);
-
-    document.getElementById(selection).parentNode.classList.add('bg-success');
+    document.getElementById(selection).parentNode.style = 'background-color: darkgreen !important';
 
     let timer = +document.getElementById('time').innerText;
-    let number = 1000;
-    let timeValue = (timer * 1000) + number;
-    console.log(timer);
-
-
+    let timeValue = (timer * 1000);
 
     setTimeout(function () {
         if (selectedQuestionNumber == question['right_answer']) {
@@ -191,6 +178,7 @@ function setAnswer(selection) {
                 <a class="navbar-brand color" href="#">Du hast leider die falsche Antwort!!!!</a>
                 `;
         }
+
     }, timeValue)
 }
 
@@ -198,12 +186,42 @@ function setAnswer(selection) {
 function getResult() {
     let question = questions[currentQuestion];
     let idOfRightAnswer = `answer_${question['right_answer']}`;
-
+    if(selectionValue){
+        document.getElementById(selectionValue).parentNode.style = 'background-color: darkgreen';
+    }
     document.getElementById('answer_1').parentNode.classList.add('bg-danger');
     document.getElementById('answer_2').parentNode.classList.add('bg-danger');
     document.getElementById('answer_3').parentNode.classList.add('bg-danger');
     document.getElementById('answer_4').parentNode.classList.add('bg-danger');
     document.getElementById(idOfRightAnswer).parentNode.style = 'background-color: green !important;';
+    setTimeout(function () {
+        console.log('gotNextQUrestion');
+        goToNextQuestion();
+    }, 3000)
 
 }
 
+function goToNextQuestion() {
+    let question = questions[currentQuestion];
+    let idOfRightAnswer = `answer_${question['right_answer']}`;
+
+    if(selectionValue){
+        document.getElementById(selectionValue).parentNode.style = '';
+        
+    }
+    document.getElementById('success-bar').classList.add('d-none');
+    document.getElementById('success-bar').classList.remove('bg-danger');
+    console.log('test succes-bar')
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+    document.getElementById(idOfRightAnswer).parentNode.style = '';
+    
+    setTimeout(function () {
+        if (currentQuestion <= questions.length) {
+            currentQuestion++
+            showQuestion();
+        }
+    }, 1000)
+}

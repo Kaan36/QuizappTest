@@ -1,5 +1,5 @@
 :root {
-    --pictureWidth: 800px;
+    --pictureWidth: 100%;
     --pictureMarginTop: 16px;
 }
 
@@ -9,6 +9,7 @@
 
 .mainImage {
     width: var(--pictureWidth) !important;
+    max-height: 580px;
 }
 
 .card {
@@ -32,9 +33,7 @@
 
 .card-image {
     display: flex;
-    justify-content: center;
     margin-top: var(--pictureMarginTop);
-    position: relative;
 }
 
 .answer-main-box {
@@ -55,16 +54,29 @@
 }
 
 .timer {
-    position: fixed;
-    left: 6%;
-    top: 50%;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: darkviolet;
-    height: 80px;
-    width: 80px;
+    max-height: 100px;
+    max-width: 100px;
     border-radius: 50%;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 1);
 }
 
+.box-right {
+    
+    min-width: 20%;
+}
+.box-center {
+    min-width: 60%;
+}
+
+.box-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 20%;
+}
