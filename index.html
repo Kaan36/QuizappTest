@@ -16,71 +16,8 @@
 
 </head>
 
-<body onload="showQuestion()">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-md">
-            <a class="navbar-brand" href="#" id="question-header">Willkommen im Quiz-Duell</a>
-        </div>
-    </nav>
-    <nav class="navbar bg-success navbar-light d-none" id="success-bar">
-        <div class="container-md text-center" id="success-intern-bar">
-
-        </div>
-    </nav>
-    <div class="card" style="width: 99%;">
-        <div class="card-image">
-
-            <div class="box-left">
-                <div id="timer" class="timer fw-bold text-center fs-1 d-none">
-                    <span id="time">10</span>
-                </div>
-            </div>
-           <div class="box-center">
-            <img src="https://c.pxhere.com/photos/e5/da/animal_big_cat_safari_tiger_wild_cat_wildlife_zoo-1169706.jpg!d"
-            srcset="https://c.pxhere.com/photos/e5/da/animal_big_cat_safari_tiger_wild_cat_wildlife_zoo-1169706.jpg!d"
-            alt="Tier, Tierwelt, Zoo, Säugetier, Fauna, große Katze, Tiger, Wirbeltier, Safari, große Katzen, wilde Katze, Katze wie Säugetier, Kostenlose foto In PxHere"
-            class="card-img-top mainImage" alt="...">
-           </div>
-            
-            <div class="box-right">
-                
-            </div>
-        </div>
-
-        <div class="answer-main-box">
-            <div class="answer-box-left">
-                <div class="card-body">
-                    <div class="card red fw-bold" onclick="setAnswer('answer_1')">
-                        <div class="card-body" id="answer_1">
-                            This is some text within a card body.
-                        </div>
-                    </div>
-
-                    <div class="card yellow fw-bold" onclick="setAnswer('answer_2')">
-                        <div class="card-body" id="answer_2">
-                            This is some text within a card body.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="answer-box-right">
-                <div class="card-body">
-                    <div class="card bg-primary fw-bold" onclick="setAnswer('answer_3')">
-                        <div class="card-body" id="answer_3">
-                            This is some text within a card body.
-                        </div>
-                    </div>
-
-                    <div class="card bg-success fw-bold" onclick="setAnswer('answer_4')">
-                        <div class="card-body" id="answer_4">
-                            This is some text within a card body.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+<body id="body" onload="renderStart()">
+    
 
 </body>
 
